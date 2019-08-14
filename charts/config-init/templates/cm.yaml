@@ -1,0 +1,3 @@
+{{ template "common.configmap" (dict "top" . "configmap" .Values.global.commonCmValues) }}
+---
+{{ template "common.configmap" (dict "top" . "configmap" .Values.jsonFileDataCm) }}

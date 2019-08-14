@@ -2,3 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+global:
+  commonCmValues: # configMap values that are mostly used
+    GLUU_CONFIG_ADAPTER: "kubernetes"
+    GLUU_SECRET_ADAPTER: "kubernetes"
