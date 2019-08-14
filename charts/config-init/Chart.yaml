@@ -1,8 +1,9 @@
 apiVersion: v1
 appVersion: "4.0.0"
-description: common chart that holds all chart-wide templates
-name: common
+description: Generates initial Gluu server configurations
+name: config-init
 version: 1.1.0
 maintainers:
 - name: Gluu
 email: support@gluu.org
+
