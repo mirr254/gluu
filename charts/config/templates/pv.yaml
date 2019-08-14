@@ -1,0 +1,9 @@
+{{- template "common.persistentvolume" ( list . "mychart.persistentvolume" ) }}
+{{- define  "mychart.persistentvolume" -}}
+metadata:
+  name: {{ template "config.fullname" . }}
+spec:
+  claimRef:
+    namespace: {{ .Release.Namespace }}
+    name: config-pvc
+{{- end -}}

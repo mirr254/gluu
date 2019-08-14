@@ -3,6 +3,6 @@
 # Declare variables to be passed into your templates.
 
 global:
-  commonCmValues: # configMap values that are mostly used
-    GLUU_CONFIG_ADAPTER: "kubernetes"
-    GLUU_SECRET_ADAPTER: "kubernetes"
+  # configMap values that are mostly used
+  gluuConfigAdapter: "kubernetes"
+  gluuSecretAdapter: "kubernetes"

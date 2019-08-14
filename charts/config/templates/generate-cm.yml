@@ -1,0 +1,17 @@
+{{- template "common.configmap" (list . "mychart.genconfigmap") -}}
+{{- define "mychart.genconfigmap" -}}
+metadata:
+  name: config-gen-cm
+  namespace: {{ .Values.global.namespace }}
+data:
+  generate.json: |-
+    {
+        "hostname": "demoexample.gluu.org",
+        "country_code": "US",
+        "state": "TX",
+        "city": "Austin",
+        "admin_pw": "S3cr3t+pass",
+        "email": "s@gluu.local",
+        "org_name": "Gluu Inc."
+    }
+{{- end -}}

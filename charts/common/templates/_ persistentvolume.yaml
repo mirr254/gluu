@@ -1,0 +1,16 @@
+{{- define "common.persistentvolume.tpl" -}}
+apiVersion: v1
+kind: PersistentVolume
+{{ template "common.metadata" . }}
+spec:
+  persistentVolumeReclaimPolicy: {{ .Values.persistence.reclaimPolicy | quote }}
+  accessModes:
+    - {{ .Values.persistence.accessMode | quote }}
+  capacity:
+    storage: {{ .Values.persistence.size }}
+  hostPath:
+    path: "/data/config/db"
+{{- end -}}
+{{- define "common.persistentvolume" -}}
+{{- template "common.util.merge" (append . "common.persistentvolume.tpl") -}}
+{{- end -}}

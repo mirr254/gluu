@@ -1,2 +1,0 @@
-{{- $params := dict "top" . "job" .Values.configJob -}}
-{{ template "common.job.simple" $params }}

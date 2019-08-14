@@ -1,0 +1,6 @@
+{{- template "common.persistentvolumeclaim" (list . "mychart.persistentvolumeclaim") -}}
+{{- define "mychart.persistentvolumeclaim" -}}
+metadata:
+  name: config-pvc
+{{- end -}}
+

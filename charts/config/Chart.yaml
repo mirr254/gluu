@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: "4.0.0"
+description: A Helm chart to create default configs for the gluu server
+name: config
+version: 1.1.0
+maintainers:
+- name: Gluu
+email: support@gluu.org
