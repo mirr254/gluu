@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "ldap.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: opendj # has to match .spec.template.metadata.labels
+  serviceName: {{ .Values.global.ldap.serviceName }}
+  replicas: {{ .Values.replicaCount }} 
+  template:
+    metadata:
+      labels:
+        app: opendj # has to match .spec.selector.matchLabels
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - opendj
+            topologyKey: "kubernetes.io/hostname"
+      volumes:
+      - {{ template "common.volume.pvc" ( list "data" "opendj-pvc" .Values.persistence ) }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        envFrom:
+        - configMapRef:
+            name: {{ template "ldap.fullname" . }}-init-cm
+        ports:
+        {{- range $key, $value := .Values.service.ports }}
+          - containerPort: {{ $value.targetPort }}
+            name: {{ $key }}
+        {{- end }}
+        volumeMounts:
+        {{- range $key, $value := .Values.volume.initMounts }}
+          - mountPath: {{ $value.mountPath }}
+            name: {{ $value.name }}
+            subPath: {{ $key }}
+        {{- end }}
+        readinessProbe:
+          tcpSocket: 
+            port: 1636
+          initialDelaySeconds: 25
+          periodSeconds: 25
+        livenessProbe:
+          tcpSocket:
+            port: 1636
+          initialDelaySeconds: 30
+          periodSeconds: 30
+  

@@ -1,0 +1,20 @@
+{{- template "common.configmap" (list . "ldap.configmap") -}}
+{{- define "ldap.configmap" -}}
+metadata:
+  name: {{ template "ldap.fullname" . }}-init-cm
+data:
+  GLUU_CONFIG_ADAPTER: {{ .Values.global.gluuConfigAdapter | quote }}
+  GLUU_SECRET_ADAPTER: {{ .Values.global.gluuSecretAdapter | quote }}
+  # must the same as the opendj service name
+  GLUU_CERT_ALT_NAME: {{ .Values.global.ldap.serviceName }}
+  GLUU_LDAP_INIT_HOST: {{ .Values.configmap.ldapInitHost }} 
+  GLUU_LDAP_INIT: {{ .Values.configmap.ldapInit | quote }}
+  GLUU_LDAP_INIT_PORT: {{ .Values.configmap.ldapInitPort | quote }}
+  GLUU_OXTRUST_CONFIG_GENERATION: {{ .Values.configmap.oxtrustConfigGeneration | quote }}
+  GLUU_CACHE_TYPE: {{ .Values.configmap.cacheType | quote }}
+  {{- if .Values.global.redis.enabled }}
+  GLUU_CACHE_TYPE: {{ .Values.configmap.redisCacheType | quote }}
+  GLUU_REDIS_URL: {{ .Values.configmap.redisUrl | quote }}
+  GLUU_REDIS_TYPE: {{ .Values.configmap.redisType | quote }}
+  {{- end }}
+{{- end -}}

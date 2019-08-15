@@ -1,0 +1,7 @@
+{{- template "common.persistentvolume" ( list . "ldap.persistentvolume" ) }}
+{{- define "ldap.persistentvolume" -}}
+metadata:
+  name: {{ include "ldap.fullname" . }}
+  labels:
+    pvc: opendj-pvc
+{{- end -}}

@@ -6,3 +6,11 @@ global:
   # configMap values that are mostly used
   gluuConfigAdapter: "kubernetes"
   gluuSecretAdapter: "kubernetes"
+
+  #enable redis if you want to use it
+  redis:
+    enabled: true
+
+  ldap:
+    serviceName: opendj
+    
