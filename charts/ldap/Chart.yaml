@@ -1,0 +1,8 @@
+apiVersion: v1
+appVersion: "4.0.0"
+description: opendj/ldap server
+name: ldap
+version: 1.1.0
+maintainers:
+- name: Gluu
+email: support@gluu.org

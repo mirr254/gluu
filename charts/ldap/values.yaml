@@ -1,0 +1,87 @@
+# Default values for ldap.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: gluufederation/wrends
+  tag: 4.0.0_dev
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  ports:
+    ldaps:
+      port: 1636
+      targetPort: 1636
+    ldap:
+      port: 1389
+      targetPort: 1389
+    replication:
+      port: 8989
+      targetPort: 8989
+    admin:
+      port: 4444
+      targetPort: 4444
+
+persistence:
+  enabled: true
+  storageClass: "-"
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  # please uncomment and provide your own claim if you have set up one
+  # existingClaim: ""
+
+configmap:
+  ldapInit: true
+  ldapInitHost: opendj
+  ldapInitPort: 1636
+  oxtrustConfigGeneration: true
+  cacheType: NATIVE_PERSISTENCE
+  certAltName: opendj
+  # RedisEnabled will determin if GLUU_REDIS_URL and GLUU_REDIS_TYPE if they will be used.
+  redisCacheType: REDIS
+  redisUrl: redis:6379
+  redisType: STANDALONE
+  #repl diferent env vars
+  ldapInitRepl: false
+  oxtrustConfigGenerationRepl: false
+
+volume:
+  initMounts:
+    config:
+      mountPath: /opt/opendj/config
+      name: opendj-pvc
+    ldif: 
+      mountPath: /opt/opendj/ldif
+      name: opendj-pvc
+    logs: 
+      mountPath: /opt/opendj/logs
+      name: opendj-pvc
+    db: 
+      mountPath: /opt/opendj/db
+      name: opendj-pvc
+    flag: 
+      mountPath: /flag
+      name: opendj-pvc
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

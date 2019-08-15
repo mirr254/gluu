@@ -1,0 +1,20 @@
+{{- template "common.service" ( list . "mychart.service" ) -}}
+{{- define "mychart.service" -}}
+metadata:
+  name: {{ .Values.global.ldap.serviceName }}
+  labels: 
+    app: opendj
+
+spec:
+  ports:
+    {{- range $key, $value := .Values.service.ports }}
+    - port: {{ $value.port }}
+      targetPort: {{ $value.targetPort }}
+      type: TCP
+      name: {{ $key }}
+    {{- end }}
+  selector:
+    app: opendj
+  
+  {{- end -}}
+  
