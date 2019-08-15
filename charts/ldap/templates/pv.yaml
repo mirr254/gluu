@@ -1,9 +1,7 @@
-{{- template "common.persistentvolume" ( list . "mychart.persistentvolume" ) }}
-{{- define "mychart.persistentvolume" -}}
+{{- template "common.persistentvolume" ( list . "ldap.persistentvolume" ) }}
+{{- define "ldap.persistentvolume" -}}
 metadata:
-  name: {{template "ldap.fullname" . }}
-spec:
-  claimRef:
-    name: opendj-pvc
-    namespace: {{ .Release.Namespace }}
+  name: {{ include "ldap.fullname" . }}
+  labels:
+    pvc: opendj-pvc
 {{- end -}}

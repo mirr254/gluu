@@ -1,5 +1,5 @@
-{{- template "common.configmap" (list . "mychart.configmap") -}}
-{{- define "mychart.configmap" -}}
+{{- template "common.configmap" (list . "ldap.configmap") -}}
+{{- define "ldap.configmap" -}}
 metadata:
   name: {{ template "ldap.fullname" . }}-init-cm
 data:

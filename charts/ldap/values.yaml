@@ -54,19 +54,19 @@ volume:
   initMounts:
     config:
       mountPath: /opt/opendj/config
-      name: opendj-pvc
+      name: data
     ldif: 
       mountPath: /opt/opendj/ldif
-      name: opendj-pvc
+      name: data
     logs: 
       mountPath: /opt/opendj/logs
-      name: opendj-pvc
+      name: data
     db: 
       mountPath: /opt/opendj/db
-      name: opendj-pvc
+      name: data
     flag: 
       mountPath: /flag
-      name: opendj-pvc
+      name: data
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

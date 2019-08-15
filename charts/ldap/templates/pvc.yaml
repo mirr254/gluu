@@ -1,5 +1,9 @@
-{{- template "common.persistentvolumeclaim" ( list . "mychart.persistentvolumeclaim" ) }}
-{{- define "mychart.persistentvolumeclaim" -}}
+{{- template "common.persistentvolumeclaim" ( list . "ldap.persistentvolumeclaim" ) }}
+{{- define "ldap.persistentvolumeclaim" -}}
 metadata:
   name: opendj-pvc
+spec:
+  selector:
+    matchLabels:
+      pvc: opendj-pvc
 {{- end -}}
