@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "config.fullname" . }}
+spec:
+  template:
+    metadata:
+      name: {{ template "config.name" . }}
+      labels:
+        app: {{ template "config.name" . }}-load
+    spec:
+      volumes:
+      - {{ template "common.volume.configMap" (list "config"  "config-gen-cm" ) }}
+      - {{ template "common.volume.pvc" (list "data" "config-pvc" .Values.persistence) }}
+      containers:
+      - name: {{ template "gluu.name" . }}-load
+        image: gluufederation/config-init:4.0.0_dev
+        volumeMounts:
+          - mountPath: /opt/config-init/db/
+            name: data
+          - mountPath: /opt/config-init/db/generate.json
+            name: config
+            subPath: generate.json
+        envFrom:
+        - configMapRef:
+            name: {{ template "config.fullname" . }}-cm
+        args: [ "load" ]
+      restartPolicy: Never
+          

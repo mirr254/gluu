@@ -1,0 +1,26 @@
+# Default values for config.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+statefulset:
+  enabled: false
+
+image:
+  repository: gluufederation/config-init
+  tag: 4.0.0_dev
+  restartPolicy: Never
+
+nameOverride: ""
+fullnameOverride: ""
+
+persistence:
+  enabled: true
+  storageClass: "fast" # TODO look at this later
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  reclaimPolicy: Retain
+  # NOTE: if you have an existing claim uncomment the following line
+  # and put the name there
+
+  # existingClaim: "" 
+  
