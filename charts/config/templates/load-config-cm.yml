@@ -1,8 +1,0 @@
-{{- template "common.configmap" (list . "mychart.configmap") -}}
-{{- define "mychart.configmap" -}}
-metadata: 
-  name: {{ template "config.fullname" . }}-cm
-data:
-  GLUU_CONFIG_ADAPTER: {{ .Values.global.gluuConfigAdapter }}
-  GLUU_SECRET_ADAPTER: {{ .Values.global.gluuSecretAdapter }}
-{{- end -}}
