@@ -3,6 +3,9 @@
 # Declare variables to be passed into your templates.
 
 global:
+  # prefixes to be used to name multiple resources in one chart
+  fullnamePrefix: ""
+  fullnameSuffix: ""
   # configMap values that are mostly used
   gluuConfigAdapter: "kubernetes"
   gluuSecretAdapter: "kubernetes"

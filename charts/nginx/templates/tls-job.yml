@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "nginx.fullname" . }}
+spec:
+  template:
+    metadata:
+      name: {{ include "nginx.name" . }}
+      labels:
+        app: {{ include "nginx.name" . }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+      restartPolicy: Never
