@@ -1,0 +1,8 @@
+{{- template "common.persistentvolumeclaim" ( list . "oxauth.persistentvolumeclaim") }}
+{{- define "oxauth.persistentvolumeclaim" -}}
+spec:
+  selectors:
+    matchlabels:
+      oxauth: logs
+  volumeName: {{ include "oxauth.fullname" . }}
+{{- end -}}

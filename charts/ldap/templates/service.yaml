@@ -1,5 +1,5 @@
-{{- template "common.service" ( list . "mychart.service" ) -}}
-{{- define "mychart.service" -}}
+{{- template "common.service" ( list . "ldap.service" ) -}}
+{{- define "ldap.service" -}}
 metadata:
   name: {{ .Values.global.ldap.serviceName }}
   labels: 

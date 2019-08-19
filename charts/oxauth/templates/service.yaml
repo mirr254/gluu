@@ -1,0 +1,13 @@
+{{- template "common.service" ( list . "oxauth.service" ) -}}
+{{- define "oxauth.service" -}}
+metadata:
+  name: oxauth
+  labels:
+    app: oxauth
+spec:
+  ports:
+    - port: {{ .Values.service.port }}
+      name: oxauth
+  selector:
+    app: oxauth
+{{- end -}}

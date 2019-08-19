@@ -9,6 +9,11 @@ global:
   # configMap values that are mostly used
   gluuConfigAdapter: "kubernetes"
   gluuSecretAdapter: "kubernetes"
+  gluuMaxRamFraction: 1
+
+  # network details
+  nginxIp: 192.168.99.100
+  domain: "demoexample.gluu.org"
 
   #enable redis if you want to use it
   redis:
@@ -16,4 +21,5 @@ global:
 
   ldap:
     serviceName: opendj
+    url: opendj:1636
     

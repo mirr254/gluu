@@ -1,0 +1,7 @@
+{{- template "common.persistentvolume" ( list . "oxauth.persistentvolume" ) }}
+{{- define "oxauth.persistentvolume" -}}
+metadata:
+  name: {{ include "oxauth.fullname" . }}
+  labels:
+    oxauth: logs
+{{- end -}}

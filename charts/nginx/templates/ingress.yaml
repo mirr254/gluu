@@ -4,7 +4,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-base
   labels:
     service: oxtrust
   annotations:
@@ -37,12 +37,12 @@ spec:
   {{- end }}
 ---
 
-{{- $fullName := include "nginx.fullname" . -}}
+{{ $fullName := include "nginx.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-openid-config
   labels: 
     service: oxauth
   annotations:
@@ -75,12 +75,12 @@ spec:
 
 ---
 
-{{- $fullName := include "nginx.fullname" . -}}
+{{ $fullName := include "nginx.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-uma2-config
   labels: 
     service: oxauth
   annotations:
@@ -113,12 +113,12 @@ spec:
 
 ---
 
-{{- $fullName := include "nginx.fullname" . -}}
+{{ $fullName := include "nginx.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-webfinger
   labels: 
     service: oxauth
   annotations:
@@ -152,12 +152,12 @@ spec:
 
 ---
 
-{{- $fullName := include "nginx.fullname" . -}}
+{{ $fullName := include "nginx.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-webdiscovery
   labels: 
     service: oxauth
   annotations:
@@ -191,12 +191,12 @@ spec:
 
 ---
 
-{{- $fullName := include "nginx.fullname" . -}}
+{{ $fullName := include "nginx.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-scim-config
   labels: 
     service: oxtrust
   annotations:
@@ -230,12 +230,12 @@ spec:
 
 ---
 
-{{- $fullName := include "nginx.fullname" . -}}
+{{ $fullName := include "nginx.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-u2f-config
   labels: 
     service: oxauth
   annotations:
@@ -269,12 +269,12 @@ spec:
 
 ---
 
-{{- $fullName := include "nginx.fullname" . -}}
+{{ $fullName := include "nginx.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-gluu
   labels: 
     service: oxauth
   annotations:
@@ -306,12 +306,12 @@ spec:
 
 ---
 
-{{- $fullName := include "nginx.fullname" . -}}
+{{ $fullName := include "nginx.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ $fullName }}-stateful
   labels: 
     service: oxauth
   annotations:

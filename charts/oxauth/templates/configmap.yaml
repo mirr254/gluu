@@ -1,0 +1,11 @@
+{{- template "common.configmap" (list . "oxauth.configmap") -}}
+{{- define "oxauth.configmap" -}}
+metadata:
+  name: {{ template "oxauth.fullname" . }}
+data:
+  GLUU_CONFIG_ADAPTER: {{ .Values.global.gluuConfigAdapter | quote }}
+  GLUU_SECRET_ADAPTER: {{ .Values.global.gluuSecretAdapter | quote }}
+  DOMAIN: {{ .Values.global.domain | quote }}
+  GLUU_LDAP_URL: {{ .Values.global.ldap.url | quote }}
+  GLUU_MAX_RAM_FRACTION: {{ .Values.global.gluuMaxRamFraction | quote }}
+{{- end -}}
